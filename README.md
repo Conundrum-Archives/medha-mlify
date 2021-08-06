@@ -1,4 +1,8 @@
-[![PyPI version](https://badge.fury.io/py/mlify.svg)](https://badge.fury.io/py/mlify)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/mlify)  ![PyPI](https://img.shields.io/pypi/v/mlify)
+[![PyPI version](https://badge.fury.io/py/mlify.svg)](https://badge.fury.io/py/mlify) 
+![PyPI - License](https://img.shields.io/pypi/l/mlify)
+![GitHub Repo stars](https://img.shields.io/github/stars/conundrum-archives/medha-mlify?style=social) ![GitHub contributors](https://img.shields.io/github/contributors/conundrum-archives/medha-mlify?style=social)
+
 
 
 # Medha - MLIFY
