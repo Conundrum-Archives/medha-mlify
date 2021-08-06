@@ -8,7 +8,7 @@ from pathlib import Path
     python setup.py sdist bdist_wheel --buildversion <version-num>
 '''
 
-def cleanPrevBuild():
+def clean_prevbuild():
     '''Clears the previous build data, if any.'''
     cleandirs = ["dist", "mlify.egg-info"]
     for dir in cleandirs:
@@ -17,12 +17,12 @@ def cleanPrevBuild():
             shutil.rmtree(dirpath)
 
 
-def readReadmeFile():
+def read_readmefile():
     '''readReadmeFile def will read readmefile and return the content ans string. used for filling library readme.'''
     with open(configurations["readmefile"], "r") as rf:
         return str(rf.read())
 
-def startSetup(configurations):
+def start_setup(configurations):
     '''startSetup def will start the build/setup of py project'''
     setuptools.setup(
       name = configurations["projectname"],
@@ -40,7 +40,7 @@ def startSetup(configurations):
       ],
       include_package_data = True,
       description = configurations["projectdescription"],
-      long_description = readReadmeFile(),
+      long_description = read_readmefile(),
       long_description_content_type="text/markdown",
       license = configurations["license"],
       python_requires = configurations["pythonrequires"],
@@ -82,11 +82,11 @@ if __name__  == "__main__":
     }
 
     # call clean definition to clear prev build data
-    cleanPrevBuild()
+    clean_prevbuild()
 
     # check if version is passed during build of setup.py
     if "--buildversion" not in sys.argv:
-      raise("provide build version with --buildversion <version.number> parameter")
+      raise Exception("provide build version with --buildversion <version.number> parameter")
 
     # get version value from cli-arguments
     index = sys.argv.index('--buildversion')
@@ -94,4 +94,4 @@ if __name__  == "__main__":
     configurations["libraryversion"] = sys.argv.pop(index)
 
     # start setup
-    startSetup(configurations)
+    start_setup(configurations)

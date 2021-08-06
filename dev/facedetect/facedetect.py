@@ -19,8 +19,6 @@ classifier["frontalface"]["model"] = cv2.CascadeClassifier(faceclassifier)
 
 video_capture = cv2.VideoCapture(0)
 
-#ready = input("ready to capture.\n\nEnter to continue...")
-
 ret, frame = video_capture.read()
 gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 faces = classifier["frontalface"]["model"].detectMultiScale(

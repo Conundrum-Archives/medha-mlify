@@ -5,16 +5,16 @@ import math
 import site
 import os.path
 
-class simpleFaceDetect:
+class simple_face_detect:
 
   def __init__(self):
     """initializes cv2 for haarcascade_frontalface_default classifier cml file"""
-    cascadeFile = os.path.join(site.getsitepackages()[-1], "cv2", "data", "haarcascade_frontalface_default.xml")
-    if not os.path.isfile(cascadeFile):
-      raise FileNotFoundError("cv2 classifier not found in path: {filepath}".format(filepath=cascadeFile))
-    self.CascadeClassifier = cv2.CascadeClassifier(cascadeFile)
+    cascade_file = os.path.join(site.getsitepackages()[-1], "cv2", "data", "haarcascade_frontalface_default.xml")
+    if not os.path.isfile(cascade_file):
+      raise FileNotFoundError("cv2 classifier not found in path: {filepath}".format(filepath=cascade_file))
+    self.cascade_classifier = cv2.CascadeClassifier(cascade_file)
 
-  def detect(self, imageFrame, calculatedistance=True, labelonimage=False, scaleFactor=1.1, minNeighbors=5, minSize=(30, 30), flags=cv2.CASCADE_SCALE_IMAGE) -> dict:
+  def detect(self, imageframe, calculatedistance=True, labelonimage=False, scalefactor=1.1, minneighbors=5, minsize=(30, 30), flags=cv2.CASCADE_SCALE_IMAGE) -> dict:
     """
       detects face or faces in provided image frame
       returns JSONObject with keys:
@@ -24,11 +24,11 @@ class simpleFaceDetect:
     """
 
     returndata = {
-      "detected": self.CascadeClassifier.detectMultiScale(
-        cv2.cvtColor(imageFrame, cv2.COLOR_BGR2GRAY),
-        scaleFactor=scaleFactor,
-        minNeighbors=minNeighbors,
-        minSize=minSize,
+      "detected": self.cascade_classifier.detectMultiScale(
+        cv2.cvtColor(imageframe, cv2.COLOR_BGR2GRAY),
+        scaleFactor=scalefactor,
+        minNeighbors=minneighbors,
+        minSize=minsize,
         flags = flags
       )
     }
@@ -36,7 +36,7 @@ class simpleFaceDetect:
     for (x, y, w, h) in returndata["detected"]:
       if labelonimage:
         if "labeledimage" not in returndata:
-          returndata["labeledimage"] = imageFrame
+          returndata["labeledimage"] = imageframe
         returndata["labeledimage"] = cv2.rectangle(returndata["labeledimage"], (x, y), (x + w, y + h), (255, 0, 0), 2)
       if calculatedistance:
         if "distance" not in returndata:

@@ -1,3 +1,6 @@
+[![PyPI version](https://badge.fury.io/py/mlify.svg)](https://badge.fury.io/py/mlify)
+
+
 # Medha - MLIFY
 ## This repo is a codebase for ML functionality and libraries for Medha-Rover.
 
