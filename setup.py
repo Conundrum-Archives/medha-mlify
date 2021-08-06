@@ -86,7 +86,7 @@ if __name__  == "__main__":
 
     # check if version is passed during build of setup.py
     if "--buildversion" not in sys.argv:
-      raise Exception("provide build version with --buildversion <version.number> parameter")
+      raise Exception.BaseException("provide build version with --buildversion <version.number> parameter")
 
     # get version value from cli-arguments
     index = sys.argv.index('--buildversion')
