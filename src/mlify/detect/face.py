@@ -8,13 +8,21 @@ import os.path
 class simpleFaceDetect:
 
   def __init__(self):
+    """initializes cv2 for haarcascade_frontalface_default classifier cml file"""
     cascadeFile = os.path.join(site.getsitepackages()[-1], "cv2", "data", "haarcascade_frontalface_default.xml")
     if not os.path.isfile(cascadeFile):
       raise FileNotFoundError("cv2 classifier not found in path: {filepath}".format(filepath=cascadeFile))
-
     self.CascadeClassifier = cv2.CascadeClassifier(cascadeFile)
 
   def detect(self, imageFrame, calculatedistance=True, labelonimage=False, scaleFactor=1.1, minNeighbors=5, minSize=(30, 30), flags=cv2.CASCADE_SCALE_IMAGE) -> dict:
+    """
+      detects face or faces in provided image frame
+      returns JSONObject with keys:
+        detected: array of faces-detected - coordinates and size
+        labeledimage (if flag enabled): same imageframe with label of detected face(s) on the image frame
+        distance (if flag enabled): approx distance of detected face from camera(in cm). calculation based on simple distance calculator.
+    """
+
     returndata = {
       "detected": self.CascadeClassifier.detectMultiScale(
         cv2.cvtColor(imageFrame, cv2.COLOR_BGR2GRAY),

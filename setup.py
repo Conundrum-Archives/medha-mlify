@@ -41,8 +41,10 @@ def startSetup(configurations):
       include_package_data = True,
       description = configurations["projectdescription"],
       long_description = readReadmeFile(),
+      long_description_content_type="text/markdown",
       license = configurations["license"],
       python_requires = configurations["pythonrequires"],
+      test_suite = configurations["test_suite"],
       install_requires = [
             # add library dependencies with version
       ],
@@ -60,17 +62,22 @@ if __name__  == "__main__":
 
     configurations = {
         "projectname": "mlify",
-        "license": "GPL-3.0",
-        "authoremail": "medha@conundrum.org",
+        "license": "GNU General Public License v3 or later (GPLv3+)",
+        "authoremail": "podcast.conundrum@gmail.com",
         "author": "@Conundrum-Archives/Medha-Team",
         "libraryversion": "0.0.0",
         "projectdescription": "A ML LAB library for ML application in conundrum team",
         "readmefile": "README.md",
         "pythonrequires": ">=3.6",
+        "test_suite": "tests",
         "classifiers": [
-            "Development Status :: 1 - Milestone",
-            "Topic :: ML",
-            "License :: OSI Approved :: GPL-3.0-or-later",
+            "Development Status :: 3 - Alpha",
+            "Topic :: Utilities",
+            "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+            "Programming Language :: Python :: 3.6",
+            "Programming Language :: Python :: 3.7",
+            "Programming Language :: Python :: 3.8",
+            "Programming Language :: Python :: 3.9"
         ]
     }
 
