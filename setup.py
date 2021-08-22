@@ -8,7 +8,7 @@ from pathlib import Path
     python setup.py sdist bdist_wheel --buildversion <version-num>
 '''
 
-def cleanPrevBuild():
+def clean_prevbuild():
     '''Clears the previous build data, if any.'''
     cleandirs = ["dist", "mlify.egg-info"]
     for dir in cleandirs:
@@ -17,12 +17,12 @@ def cleanPrevBuild():
             shutil.rmtree(dirpath)
 
 
-def readReadmeFile():
+def read_readmefile():
     '''readReadmeFile def will read readmefile and return the content ans string. used for filling library readme.'''
     with open(configurations["readmefile"], "r") as rf:
         return str(rf.read())
 
-def startSetup(configurations):
+def start_setup(configurations):
     '''startSetup def will start the build/setup of py project'''
     setuptools.setup(
       name = configurations["projectname"],
@@ -40,9 +40,11 @@ def startSetup(configurations):
       ],
       include_package_data = True,
       description = configurations["projectdescription"],
-      long_description = readReadmeFile(),
+      long_description = read_readmefile(),
+      long_description_content_type="text/markdown",
       license = configurations["license"],
       python_requires = configurations["pythonrequires"],
+      test_suite = configurations["test_suite"],
       install_requires = [
             # add library dependencies with version
       ],
@@ -60,26 +62,31 @@ if __name__  == "__main__":
 
     configurations = {
         "projectname": "mlify",
-        "license": "GPL-3.0",
-        "authoremail": "medha@conundrum.org",
+        "license": "GNU General Public License v3 or later (GPLv3+)",
+        "authoremail": "podcast.conundrum@gmail.com",
         "author": "@Conundrum-Archives/Medha-Team",
         "libraryversion": "0.0.0",
         "projectdescription": "A ML LAB library for ML application in conundrum team",
         "readmefile": "README.md",
         "pythonrequires": ">=3.6",
+        "test_suite": "tests",
         "classifiers": [
-            "Development Status :: 1 - Milestone",
-            "Topic :: ML",
-            "License :: OSI Approved :: GPL-3.0-or-later",
+            "Development Status :: 3 - Alpha",
+            "Topic :: Utilities",
+            "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+            "Programming Language :: Python :: 3.6",
+            "Programming Language :: Python :: 3.7",
+            "Programming Language :: Python :: 3.8",
+            "Programming Language :: Python :: 3.9"
         ]
     }
 
     # call clean definition to clear prev build data
-    cleanPrevBuild()
+    clean_prevbuild()
 
     # check if version is passed during build of setup.py
     if "--buildversion" not in sys.argv:
-      raise("provide build version with --buildversion <version.number> parameter")
+      raise Exception.BaseException("provide build version with --buildversion <version.number> parameter")
 
     # get version value from cli-arguments
     index = sys.argv.index('--buildversion')
@@ -87,4 +94,4 @@ if __name__  == "__main__":
     configurations["libraryversion"] = sys.argv.pop(index)
 
     # start setup
-    startSetup(configurations)
+    start_setup(configurations)

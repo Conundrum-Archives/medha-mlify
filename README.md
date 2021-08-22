@@ -1,3 +1,12 @@
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/mlify)  ![PyPI](https://img.shields.io/pypi/v/mlify)
+
+![GitHub Repo stars](https://img.shields.io/github/stars/conundrum-archives/medha-mlify?style=social) ![GitHub contributors](https://img.shields.io/github/contributors/conundrum-archives/medha-mlify?style=social)
+
+![PyPI - License](https://img.shields.io/pypi/l/mlify)
+
+
+
+
 # Medha - MLIFY
 ## This repo is a codebase for ML functionality and libraries for Medha-Rover.
 
